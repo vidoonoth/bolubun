@@ -1,0 +1,6 @@
+// {
+//   // setting lain …
+//   "editor.formatOnSave": true,
+//   // pastikan Prettier jadi default
+//   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+// }
