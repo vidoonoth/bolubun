@@ -16,57 +16,68 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Rubik", sans-serif;
-      }
-      .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body class="bg-white text-gray-800">
-    <header class="bg-white shadow-sm py-4">
+    <header class="main-header bg-white shadow-sm">
       <div
         class="max-w-6xl mx-auto flex justify-between items-center px-6 md:px-8"
       >
-        <a href="#" class="text-3xl font-bold text-pink-600">BoluBun</a>
+        <a href="#" class="flex items-center"
+          ><img
+            src="image/logo.png"
+            alt="BoluBun Logo"
+            id="logo"
+            class="h-12 md:h-16"
+          />
+          <p class="text-3xl font-bold text-pink-600">BoluBun</p>
+        </a>
         <nav class="relative">
           <button
             class="md:hidden text-pink-600 text-2xl focus:outline-none"
             id="menu-toggle"
+            aria-label="Toggle menu"
           >
             <i class="fas fa-bars"></i>
           </button>
+
+          <!-- Overlay untuk background gelap -->
+          <div
+            id="nav-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"
+          ></div>
+
+          <!-- Menu yang akan digeser dari kanan -->
           <ul
             id="nav-menu"
-            class="hidden md:flex md:flex-row flex-col absolute md:static bg-white right-6 top-12 md:top-0 space-y-4 md:space-y-0 md:space-x-6 rounded-md md:rounded-none shadow-md md:shadow-none px-4 py-6 md:p-0 z-10"
+            class="font-medium fixed md:static inset-y-0 right-0 transform translate-x-full md:translate-x-0 w-64 md:w-auto bg-white md:bg-transparent transition-transform duration-300 ease-in-out md:transition-none flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 px-6 py-8 md:p-0 z-50 shadow-xl md:shadow-none"
           >
-            <li>
-              <a href="#produk" class="text-gray-600 hover:text-pink-600"
+            <li class="py-2 md:py-0">
+              <a
+                href="#produk"
+                class="block text-gray-600 hover:text-pink-600 transition-colors"
                 >Produk</a
               >
             </li>
-            <li>
-              <a href="#tentang" class="text-gray-600 hover:text-pink-600"
+            <li class="py-2 md:py-0">
+              <a
+                href="#tentang"
+                class="block text-gray-600 hover:text-pink-600 transition-colors"
                 >Tentang Kami</a
               >
             </li>
-            <li>
+            <li class="py-2 md:py-0">
               <a
                 href="#lokasi-pemesanan"
-                class="text-gray-600 hover:text-pink-600"
+                class="block text-gray-600 hover:text-pink-600 transition-colors"
                 >Pesan</a
               >
             </li>
-            <li>
-              <a href="#kontak" class="text-gray-600 hover:text-pink-600"
+            <li class="py-2 md:py-0">
+              <a
+                href="#kontak"
+                class="block text-gray-600 hover:text-pink-600 transition-colors"
                 >Kontak</a
               >
             </li>
@@ -75,245 +86,293 @@
       </div>
     </header>
 
-    <section
-      class="bg-pink-100 py-16 md:py-24 flex flex-col md:flex-row items-center justify-around gap-12 px-4 md:px-8"
-    >
-      <div class="text-center md:text-left max-w-lg">
-        <h1 class="text-4xl md:text-6xl font-bold text-pink-800 leading-tight">
-          Selamat Datang di <span class="text-pink-600">BoluBun</span>
-        </h1>
-        <p class="text-lg md:text-2xl text-slate-900 mt-4 mb-8">
-          Tempatnya bolu lezat dan berkualitas, dibuat dengan cinta.
-        </p>
-        <a
-          href="#kontak"
-          class="inline-block bg-pink-600 text-white px-8 py-4 rounded-full shadow-lg hover:bg-pink-700 transition duration-300 text-lg font-semibold"
-        >
-          Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-      <div class="mt-8 md:mt-0">
-        <img
-          src="image/welcome.png"
-          alt="Bolu Hero"
-          class="w-64 md:w-96 rounded-xl transform hover:scale-105 transition duration-300"
-        />
-      </div>
-    </section>
-
-    <section class="py-16 md:py-20 bg-white scroll-mt-20" id="produk">
-      <div class="text-center mb-12 px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-          Produk Unggulan Kami
-        </h2>
-        <p class="text-gray-600 mt-3 text-base md:text-lg">
-          Pilihan bolu spesial favorit semua kalangan, selalu fresh dari oven.
-        </p>
-      </div>
-
-      <div
-        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4"
+    <main class="">
+      <section
+        id="awal"
+        class="bg-pink-100 py-10 md:py-24 flex flex-col md:flex-row items-center justify-around gap-12 px-4 md:px-8"
       >
-        <div
-          class="bg-pink-50 p-8 rounded-2xl shadow-md card-hover transform transition duration-300"
-        >
+        <div class="mt-8 md:mt-0">
           <img
-            src="image/brownies.png"
-            alt="Brownies Lumer"
-            class="w-full h-52 object-cover rounded-xl mb-6 shadow-sm"
+            src="image/welcome.png"
+            alt="Bolu Hero"
+            class="w-64 md:w-96 rounded-xl transform hover:scale-105 transition duration-300"
           />
-          <h3 class="text-2xl font-semibold text-pink-700 mb-2">
-            Brownies Lumer
-          </h3>
-          <p class="text-gray-600 text-base">
-            Cokelat premium dengan tekstur moist yang bikin ketagihan, lumer di
-            setiap gigitan.
+        </div>
+        <div class="flex flex-col text-center md:text-left max-w-lg">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-pink-800 leading-tight"
+          >
+            Selamat Datang di <span class="text-pink-600">BoluBun</span>
+          </h1>
+          <p class="text-lg md:text-2xl text-slate-900 mt-4 mb-8">
+            Tempatnya bolu lezat dan berkualitas, dibuat dengan cinta.
           </p>
-          <div class="mt-4 text-pink-600 font-bold text-xl">Rp 75.000</div>
+          <a
+            href="#kontak"
+            class="flex items-center justify-center text-center bg-white text-pink-600 hover:bg-pink-500 text-center hover:text-white px-8 py-4 rounded-full shadow-lg hover:bg-pink-700 transition duration-300 text-lg font-semibold"
+          >
+            <p>Pesan Sekarang</p>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
-
-        <div
-          class="bg-yellow-50 p-8 rounded-2xl shadow-md card-hover transform transition duration-300"
-        >
-          <img
-            src="image/cheese-cake-persegi-panjang.png"
-            alt="Cheese Cake"
-            class="w-full h-52 object-cover rounded-xl mb-6 shadow-sm"
-          />
-          <h3 class="text-2xl font-semibold text-yellow-700 mb-2">
-            Cheese Cake
-          </h3>
-          <p class="text-gray-600 text-base">
-            Perpaduan keju lembut dan manisnya krim, cocok untuk pecinta dessert
-            elegan.
+      </section>
+      <section class="py-6 md:py-20 bg-white scroll-mt-20" id="produk">
+        <div class="text-center mb-12 px-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+            Produk BoluBun
+          </h2>
+          <p class="text-gray-600 mt-3 text-base md:text-lg">
+            Pilihan bolu spesial favorit semua kalangan, selalu fresh dari oven.
           </p>
-          <div class="mt-4 text-yellow-600 font-bold text-xl">Rp 85.000</div>
         </div>
 
+        <!-- Responsive Grid -->
         <div
-          class="bg-green-50 p-8 rounded-2xl shadow-md card-hover transform transition duration-300"
+          class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4"
         >
-          <img
-            src="image/banana-cake.jpg"
-            alt="Banana Cake"
-            class="w-full h-52 object-cover rounded-xl mb-6 shadow-sm"
-          />
-          <h3 class="text-2xl font-semibold text-green-700 mb-2">
-            Banana Cake
-          </h3>
-          <p class="text-gray-600 text-base">
-            Aroma pisang yang khas dan tekstur lembut, bolu klasik yang selalu
-            dirindukan.
-          </p>
-          <div class="mt-4 text-green-600 font-bold text-xl">Rp 65.000</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 md:py-20 bg-purple-50 scroll-mt-20" id="tentang">
-      <div
-        class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center px-6 md:px-8"
-      >
-        <div class="order-2 md:order-1">
-          <h3 class="text-4xl font-bold text-pink-700 mb-6 leading-snug">
-            Kenapa Harus Pilih
-            <span class="text-pink-500">BoluBun</span>?
-          </h3>
-          <ul class="space-y-4 text-gray-700 text-lg">
-            <li>
-              <i class="fas fa-check-circle text-pink-500 mr-2"></i> Dibuat
-              dengan resep warisan keluarga.
-            </li>
-            <li>
-              <i class="fas fa-check-circle text-pink-500 mr-2"></i>
-              Dipanggang segar setiap hari tanpa bahan pengawet.
-            </li>
-            <li>
-              <i class="fas fa-check-circle text-pink-500 mr-2"></i> Tekstur
-              lembut dan rasa autentik di setiap gigitan.
-            </li>
-            <li>
-              <i class="fas fa-check-circle text-pink-500 mr-2"></i>
-              Bahan-bahan berkualitas premium.
-            </li>
-          </ul>
-        </div>
-        <div class="order-1 md:order-2">
-          <img
-            src="image/banana-cake.jpg"
-            alt="Delicious BoluBun"
-            class="rounded-2xl shadow-2xl w-full max-w-md mx-auto transform hover:scale-105 transition duration-300"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section
-      id="lokasi-pemesanan"
-      class="py-16 md:py-20 bg-slate-50 scroll-mt-20"
-    >
-      <div class="max-w-6xl mx-auto px-6 md:px-8 text-center">
-        <h2 class="text-4xl font-bold text-pink-600 mb-6">
-          Lokasi & Cara Pemesanan
-        </h2>
-        <p class="text-gray-700 text-lg mb-10 max-w-2xl mx-auto">
-          Kami siap melayani pesanan bolu lezat Anda dengan mudah dan cepat.
-          Pilih cara yang paling nyaman untuk Anda.
-        </p>
-
-        <div class="grid md:grid-cols-2 gap-12 items-start">
-          <div class="bg-white p-8 rounded-2xl shadow-md text-left">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
-              <i class="fas fa-store-alt text-pink-500 mr-3"></i>Outlet Kami
-            </h3>
-            <p class="text-gray-700 mb-2">
-              Jalan Raya Kenangan Indah No. 123, Blok A, Kota Harapan, 12345
-            </p>
-            <p class="text-gray-600 text-sm mb-4">
-              (Kunjungan dengan perjanjian, atau untuk pengambilan pesanan, atau pengantaran)
-            </p>
+          <!-- CARD 1 -->
+          <div
+            class="bg-pink-50 p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between"
+          >
+            <div>
+              <img
+                src="image/brownies.png"
+                alt="Brownies Lumer"
+                class="w-full h-48 sm:h-52 object-cover rounded-xl mb-6 shadow-sm"
+              />
+              <h3 class="text-xl sm:text-2xl font-semibold text-pink-700 mb-2">
+                Brownies Lumer
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base">
+                Cokelat premium dengan tekstur moist yang bikin ketagihan, lumer
+                di setiap gigitan.
+              </p>
+              <div class="mt-4 text-pink-600 font-bold text-lg sm:text-xl">
+                Rp 75.000
+              </div>
+            </div>
             <a
-              href="https://maps.google.com/?q=Jalan+Raya+Kenangan+Indah+No.+123,+Blok+A,+Kota+Harapan"
-              target="_blank"
-              class="inline-block text-blue-600 hover:underline"
+              href="#kontak"
+              class="mt-6 bg-pink-600 text-white text-center px-6 py-2 rounded-full font-semibold hover:bg-pink-700 transition duration-300"
             >
-              <i class="fas fa-map-marker-alt mr-2"></i>Lihat di Google Maps
+              Pesan Sekarang
             </a>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">
-              <i class="fas fa-clock text-pink-500 mr-3"></i>Jam Operasional
-            </h3>
-            <ul class="text-gray-700 space-y-2">
-              <li>
-                <span class="font-semibold">Senin - Sabtu:</span> 09:00 - 17:00
-                WIB
-              </li>
-              <li><span class="font-semibold">Minggu:</span> Tutup</li>
-            </ul>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-md text-left">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
-              <i class="fas fa-shopping-cart text-pink-500 mr-3"></i>Cara
-              Pemesanan
-            </h3>
-            <p class="text-gray-700 mb-4">
-              Untuk kemudahan Anda, kami menerima pesanan melalui:
-            </p>
-            <ul class="space-y-4 text-lg">
-              <li>
-                <strong class="text-pink-600">WhatsApp:</strong>
-                <a
-                  href="https://wa.me/6281234567890?text=Halo%20BoluBun,%20saya%20ingin%20memesan%20bolu."
-                  target="_blank"
-                  class="text-green-600 hover:underline ml-2"
-                >
-                  <i class="fab fa-whatsapp mr-1"></i>0812-3456-7890
-                </a>
-                <p class="text-gray-600 text-sm mt-1">
-                  (Respon cepat selama jam operasional)
-                </p>
-              </li>
-            </ul>
+          <!-- CARD 2 -->
+          <div
+            class="bg-yellow-50 p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between"
+          >
+            <div>
+              <img
+                src="image/cheese-cake-persegi-panjang.png"
+                alt="Cheese Cake"
+                class="w-full h-48 sm:h-52 object-cover rounded-xl mb-6 shadow-sm"
+              />
+              <h3
+                class="text-xl sm:text-2xl font-semibold text-yellow-700 mb-2"
+              >
+                Cheese Cake
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base">
+                Perpaduan keju lembut dan manisnya krim, cocok untuk pecinta
+                dessert elegan.
+              </p>
+              <div class="mt-4 text-yellow-600 font-bold text-lg sm:text-xl">
+                Rp 85.000
+              </div>
+            </div>
+            <a
+              href="#kontak"
+              class="mt-6 bg-yellow-500 text-white text-center px-6 py-2 rounded-full font-semibold hover:bg-yellow-600 transition duration-300"
+            >
+              Pesan Sekarang
+            </a>
+          </div>
+
+          <!-- CARD 3 -->
+          <div
+            class="bg-green-50 p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between"
+          >
+            <div>
+              <img
+                src="image/banana-cake.jpg"
+                alt="Banana Cake"
+                class="w-full h-48 sm:h-52 object-cover rounded-xl mb-6 shadow-sm"
+              />
+              <h3 class="text-xl sm:text-2xl font-semibold text-green-700 mb-2">
+                Banana Cake
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base">
+                Aroma pisang yang khas dan tekstur lembut, bolu klasik yang
+                selalu dirindukan.
+              </p>
+              <div class="mt-4 text-green-600 font-bold text-lg sm:text-xl">
+                Rp 65.000
+              </div>
+            </div>
+            <a
+              href="#kontak"
+              class="mt-6 bg-green-600 text-white text-center px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300"
+            >
+              Pesan Sekarang
+            </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section
-      id="kontak"
-      class="py-16 md:py-20 bg-pink-50 text-center scroll-mt-20"
-    >
-      <h2
-        class="text-4xl md:text-5xl font-bold text-pink-700 mb-8 leading-tight"
-      >
-        Jangan Tunda Lagi, Nikmati Kelezatan BoluBun Sekarang!
-      </h2>
-      <a
-        href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20produk%20BoluBun%2C%20bisa%20bantu%20informasi%20lebih%20lanjut%3F"
-        target="_blank"
-        class="inline-block bg-green-500 text-white px-10 py-5 rounded-full text-xl shadow-lg hover:bg-green-600 transition duration-300 font-semibold"
-      >
-        <i class="fab fa-whatsapp mr-3"></i> Chat via WhatsApp Langsung!
-      </a>
-      <p class="text-gray-600 mt-4 text-base">
-        Kami siap melayani Anda dengan sepenuh hati.
-      </p>
-    </section>
+      <section class="py-16 md:py-20 bg-purple-50 scroll-mt-20" id="tentang">
+        <div
+          class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center px-6 md:px-8"
+        >
+          <div class="order-2 md:order-1">
+            <h3 class="text-4xl font-bold text-pink-700 mb-6 leading-snug">
+              Kenapa Harus Pilih
+              <span class="text-pink-500">BoluBun</span>?
+            </h3>
+            <ul class="space-y-4 text-gray-700 text-lg">
+              <li>
+                <i class="fas fa-check-circle text-pink-500 mr-2"></i> Dibuat
+                dengan resep warisan keluarga.
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-pink-500 mr-2"></i>
+                Dipanggang segar setiap hari tanpa bahan pengawet.
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-pink-500 mr-2"></i> Tekstur
+                lembut dan rasa autentik di setiap gigitan.
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-pink-500 mr-2"></i>
+                Bahan-bahan berkualitas premium.
+              </li>
+            </ul>
+          </div>
+          <div class="order-1 md:order-2">
+            <img
+              src="image/banana-cake.jpg"
+              alt="Delicious BoluBun"
+              class="rounded-2xl shadow-2xl w-full max-w-md mx-auto transform hover:scale-105 transition duration-300"
+            />
+          </div>
+        </div>
+      </section>
 
-    <footer class="bg-white py-10 text-center text-slate-900">
-      <div class="max-w-6xl mx-auto px-6">
-        <p class="mb-4 text-lg font-semibold">BoluBun</p>        
-        <p class="text-sm mt-1">&copy; 2025 BoluBun | Dibuat dengan ❤️ oleh Bunda.</p>      
+      <section
+        id="lokasi-pemesanan"
+        class="py-16 md:py-20 bg-slate-50 scroll-mt-20"
+      >
+        <div class="max-w-6xl mx-auto px-6 md:px-8 text-center">
+          <h2 class="text-4xl font-bold text-pink-600 mb-6">
+            Lokasi & Cara Pemesanan
+          </h2>
+          <p class="text-gray-700 text-lg mb-10 max-w-2xl mx-auto">
+            siap melayani pesanan bolu lezat Anda dengan mudah dan cepat. Pilih
+            cara yang paling nyaman untuk Anda.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div class="bg-white p-8 rounded-2xl shadow-md text-left">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-store-alt text-pink-500 mr-3"></i>Lokasi
+              </h3>
+              <p class="text-gray-700 mb-2">
+                BTN BKI Kalianyar no e 3 RT/RW 011/001 desa Kalianyar, kecamatan
+                krangkeng,kab Indramayu,jawabarat
+              </p>
+              <p class="text-gray-600 text-sm mb-4">
+                (Kunjungan dengan perjanjian, atau untuk pengambilan pesanan,
+                atau pengantaran)
+              </p>
+              <a
+                href="https://maps.app.goo.gl/m8k8XEeHdifQSFV78"
+                target="_blank"
+                class="inline-block text-blue-600 hover:underline"
+              >
+                <i class="fas fa-map-marker-alt mr-2"></i>Lihat di Google Maps
+              </a>
+
+              <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+                <i class="fas fa-clock text-pink-500 mr-3"></i>Jam Operasional
+              </h3>
+              <ul class="text-gray-700 space-y-2">
+                <li>
+                  <span class="font-semibold">Senin - Sabtu:</span> 09:00 -
+                  17:00 WIB
+                </li>
+                <li><span class="font-semibold">Minggu:</span> Tutup</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md text-left">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-shopping-cart text-pink-500 mr-3"></i>Cara
+                Pemesanan
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Untuk kemudahan Anda, kami menerima pesanan melalui:
+              </p>
+              <ul class="space-y-4 text-lg">
+                <li>
+                  <strong class="text-black">WhatsApp:</strong>
+                  <a
+                    href="https://wa.me/628813014177?text=Halo%20BoluBun,%20saya%20ingin%20memesan%20bolu."
+                    target="_blank"
+                    class="text-green-600 hover:underline ml-2"
+                  >
+                    <i class="fab fa-whatsapp mr-1"></i>0881-3014-177
+                  </a>
+                  <p class="text-gray-600 text-sm mt-1">
+                    (Respon cepat selama jam operasional)
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="kontak"
+        class="py-16 md:py-20 bg-pink-50 text-center scroll-mt-20"
+      >
+        <h2
+          class="text-4xl md:text-5xl font-bold text-pink-700 mb-8 leading-tight"
+        >
+          Jangan Tunda Lagi, Nikmati Kelezatan BoluBun Sekarang!
+        </h2>
+        <a
+          href="https://wa.me/628813014177?text=Halo%20bun,%20saya%20ingin%20memesan%20bolu"
+          target="_blank"
+          class="inline-block bg-green-50 text-green-500 hover:bg-green-500 hover:text-white px-10 py-5 rounded-full text-xl shadow-lg transition duration-300 font-semibold"
+        >
+          <i class="fab fa-whatsapp mr-3"></i> Chat via WhatsApp Langsung!
+        </a>
+        <p class="text-gray-600 mt-4 text-base">
+          Kami siap melayani Anda dengan sepenuh hati.
+        </p>
+      </section>
+    </main>
+
+    <footer class="bg-white py-2 text-center text-slate-900">
+      <div
+        class="flex flex-col items-center justify-center max-w-6xl mx-auto px-6"
+      >
+        <a href="#awal" class="flex items-center justify-center space-x-2">
+          <img
+            src="image/logo.png"
+            alt="BoluBun Logo"
+            id="logo"
+            class="h-12 md:h-16"
+          />
+          <p class="text-3xl font-bold text-pink-600">BoluBun</p>
+        </a>
+        <p class="text-sm mt-1">
+          © 2025 BoluBun | Dibuat dengan ❤️ oleh Bunda.
+        </p>
       </div>
     </footer>
-
-    <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const navMenu = document.getElementById("nav-menu");
-      menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("hidden");
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,25 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Rubik", sans-serif;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+/* Perubahan di sini untuk animasi yang lebih halus */
+.main-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  /* Tingkatkan durasi ke 0.5s dan coba fungsi 'ease-in-out' */
+  transition: transform 0.5s ease-in-out;
+}
+.main-header.hidden {
+  transform: translateY(-100%);
+}
+
+
